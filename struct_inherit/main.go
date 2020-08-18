@@ -57,6 +57,12 @@ type SuperMan struct{
   level int
 }
 
+type SuperWoman struct{
+  *Human
+  name string
+  level int
+}
+
 func (s SuperMan) Eat(){
   fmt.Println("SuperMan.Eat:",s)
 }
@@ -99,5 +105,9 @@ func main() {
 
     //test(s)//导致错误，方法需要Human类型，但传的是SuperMan类型
     test(s.Human)//正确
+
+    sw:=SuperWoman{&Human{"Mary", "Female"}, "Super Mary", 99}
+    sw.Walk()
+    sw.Eat()
 }
 
