@@ -56,7 +56,7 @@ func main() {
         a.name = "Tiger"
         fmt.Println(a.shout(), a.name) // 这里可以直接取出 name 成员
     case Cat, Dog: // 匹配多个Type, a的类型是 Animal
-        fmt.Println(a.shout()) // 输出 {}
+        fmt.Println(a.shout())
     default: // a的类型是 Animal
         fmt.Println("default")
     }
@@ -65,13 +65,9 @@ func main() {
     typeOfA := reflect.TypeOf(a)
     fmt.Println(typeOfA.Name(), typeOfA.Kind())
 
-    // 获取结构体实例的反射类型对象
     typeOfCat := reflect.TypeOf(Cat{})
-    // 显示反射类型对象的名称和种类
     fmt.Println(typeOfCat.Name(), typeOfCat.Kind())
-    // 获取Zero常量的反射类型对象
 
     typeOfZ := reflect.TypeOf(Zero)
-    // 显示反射类型对象的名称和种类
     fmt.Println(typeOfZ.Name(), typeOfZ.Kind())
 }
