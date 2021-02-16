@@ -16,8 +16,8 @@ func (self Convertor) force_type() {
 
 // For pointer convert, must use unsafe
 func (self Convertor) pointer_type() {
-    var a int =10
-    var b *int =&a
+    var a int = 10
+    var b *int = &a
     var c *int64 = (*int64)(unsafe.Pointer(b))
     fmt.Println(*c)
 }
@@ -25,18 +25,19 @@ func (self Convertor) pointer_type() {
 // assert type convert variable.(type)
 func (self Convertor) assert_type() {
     var a interface{} =10
-    t, ok:= a.(int)
-    if ok{
+    t, ok := a.(int)
+    if ok {
         fmt.Println("int", t)
     }
-    t2, ok:= a.(float32)
+
+    t2, ok := a.(float32)
     if ok{
         fmt.Println("float32", t2)
     }
 }
 
 func main() {
-    var cvt  = Convertor{}
+    var cvt = Convertor{}
     cvt.force_type()
     cvt.pointer_type()
     cvt.assert_type()

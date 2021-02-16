@@ -99,7 +99,7 @@ func main() {
     // goto usage
     fmt.Println("\n")
     fmt.Println("==Prime Number")
-    i = 0
+    i = 1
 START:
     for i < 100 {
         i++

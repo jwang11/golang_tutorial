@@ -24,6 +24,7 @@ type Bike struct {
     Car
     lunzi int
 }
+
 type Train struct {
     Car
 }
@@ -39,40 +40,40 @@ func (p *Train) String() string {
 }
 
 type Human struct{
-  name string
-  sex string
+    name string
+    sex string
 }
 
 func (h Human) Eat(){
-  fmt.Println("Human.Eat:",h)
+    fmt.Println("Human.Eat:",h)
 }
 
 func (h Human) Walk(){
-  fmt.Println("Human.Walk:",h)
+    fmt.Println("Human.Walk:",h)
 }
 
 type SuperMan struct{
-  Human
-  name string
-  level int
+    Human
+    name string
+    level int
 }
 
 type SuperWoman struct{
-  *Human
-  name string
-  level int
+    *Human
+    name string
+    level int
 }
 
 func (s SuperMan) Eat(){
-  fmt.Println("SuperMan.Eat:",s)
+    fmt.Println("SuperMan.Eat:",s)
 }
 
 func (s SuperMan) Fly(){
-  fmt.Println("I believe I can fly!",s)
+    fmt.Println("I believe I can fly!",s)
 }
 
-func test(h Human){
-  fmt.Println("test pass!")
+func TestHuman(h Human){
+    fmt.Println("test pass!")
 }
 
 func main() {
@@ -103,8 +104,8 @@ func main() {
     s.Human.Eat()
     s.Fly()
 
-    //test(s)//导致错误，方法需要Human类型，但传的是SuperMan类型
-    test(s.Human)//正确
+    //TestHuman(s)//导致错误，方法需要Human类型，但传的是SuperMan类型
+    TestHuman(s.Human)//正确
 
     sw:=SuperWoman{&Human{"Mary", "Female"}, "Super Mary", 99}
     sw.Walk()
