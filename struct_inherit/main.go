@@ -11,15 +11,20 @@ import "fmt"
 如果一个struct嵌套了多个匿名结构体，那么这个结构可以直接访问多个匿名结构体的方法，从而实现多重继承
 */
 
+type Runnable interface {
+    Run()
+}
+
 type Car struct {
     weight int
     name   string
 }
 
-func (p *Car) Run() {
+func (p Car) Run() {
     fmt.Println("running")
 }
 
+//结构嵌入
 type Bike struct {
     Car
     lunzi int
@@ -27,6 +32,12 @@ type Bike struct {
 
 type Train struct {
     Car
+}
+
+//接口嵌入
+type Bus struct {
+    Runnable
+    brand string
 }
 
 func (p *Bike) String() string {
@@ -91,6 +102,11 @@ func main() {
     b.Run()
     fmt.Printf("%s\n", &b)
     fmt.Println(b)
+
+    //接口嵌入结构例子
+    c := Bus{ brand: "vw"}
+    mycar := Car{weight : 200, name : "car"}
+    c.Runnable = mycar
 
     s:=SuperMan{Human{"Mike", "Male"}, "Super Mike", 99}
 
