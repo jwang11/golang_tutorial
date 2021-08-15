@@ -50,6 +50,12 @@ func (p *Train) String() string {
     return str
 }
 
+func (p *Bus) String() string {
+    str := fmt.Sprintf("brand=[%s]", p.brand)
+    return str
+}
+
+
 type Human struct{
     name string
     sex string
@@ -105,8 +111,11 @@ func main() {
 
     //接口嵌入结构例子
     c := Bus{ brand: "vw"}
-    mycar := Car{weight : 200, name : "car"}
+    mycar := Car{weight : 200, name : "bus"}
     c.Runnable = mycar
+    c.Run()
+    fmt.Printf("%s\n", &c)
+    fmt.Println(c)
 
     s:=SuperMan{Human{"Mike", "Male"}, "Super Mike", 99}
 
