@@ -24,6 +24,14 @@ func main() {
         err = b.Put([]byte("monkey"), []byte("猴子"))
         err = b.Put([]byte("cat"), []byte("猫"))
 
+        if _, err := b.CreateBucketIfNotExists([]byte("bird")); err != nil {
+            logger.Log("create failed", err.Error())
+            return err
+        }
+        c := b.Bucket([]byte("bird"))
+        err = c.Put([]byte("pigeon"), []byte("鸽子"))
+        err = c.Put([]byte("peacock"), []byte("孔雀"))
+
         return err
     }); err != nil {
         logger.Log("update error is:", err.Error())
@@ -43,6 +51,12 @@ func main() {
     if err := db.View(func(tx *bolt.Tx) error {
         b := tx.Bucket([]byte("animal"))
         b.ForEach(func(k, v []byte) error {
+            fmt.Printf("key=%s, value=%s\n", k, v)
+            return nil
+            })
+
+        c := b.Bucket([]byte("bird"))
+        c.ForEach(func(k, v []byte) error {
             fmt.Printf("key=%s, value=%s\n", k, v)
             return nil
             })
